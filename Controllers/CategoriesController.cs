@@ -1,15 +1,10 @@
 
-using System.Collections.Generic;
+
 using Microsoft.AspNetCore.Mvc;
 
-using AACLIENTE.AAAPI.Models.Site;
+
 using AACLIENTE.AAAPI.Models.Category;
 
-using AACLIENTE.AAAPI.Controllers.SitesRepo;
-using AACLIENTE.AAAPI.Controllers.SitesController;
-
-using AACLIENTE.AAAPI.Controllers.CategoriesController;
-using AACLIENTE.AAAPI.Controllers.CategoriesRepo;
 
 namespace AACLIENTE.AAAPI.Controllers.CategoriesController;
 
@@ -24,12 +19,22 @@ namespace AACLIENTE.AAAPI.Controllers.CategoriesController;
 
         };
  
-
+/// <summary>
+    /// Mostrar todos los categorias
+    /// </summary>
+    /// <returns>Todos los categorias</returns>
+    /// <response code="200">Devuelve el listado de categorias</response>
+    /// <response code="500">Si hay algún error</response>
 [HttpGet]
     public ActionResult<List<Category>> Get(){
         return Ok(Categories);
     }
-
+/// <summary>
+    /// Mostrar todos los categorias
+    /// </summary>
+    /// <returns>Todos los categorias</returns>
+    /// <response code="200">Devuelve el listado de categorias</response>
+    /// <response code="500">Si hay algún error</response>
     [HttpGet]
     [Route("{id}")]
     public ActionResult<Category> Get (int id){
@@ -39,7 +44,12 @@ namespace AACLIENTE.AAAPI.Controllers.CategoriesController;
     
 
 
-
+/// <summary>
+    /// añadir categorias
+    /// </summary>
+    /// <returns>Todos los categorias</returns>
+    /// <response code="201">Se ha creado correctamente</response>
+    /// <response code="500">Si hay algún error</response>
     [HttpPost]
      public ActionResult<Category> Post([FromBody] Category category){
         var existingCategory = Categories.Find(x=>x.id== category.id);
@@ -62,7 +72,13 @@ namespace AACLIENTE.AAAPI.Controllers.CategoriesController;
             
         }
         }
- 
+ /// <summary>
+    ///Actualizar los categotias
+    /// </summary>
+    /// <returns>Todos los categorias</returns>
+    /// <response code="201">Devuelve el listado de categorias</response>
+    /// <response code="500">Si hay algún error</response>
+    
      [HttpPut]
     public ActionResult Put (Category category){
         var existingCategory = Categories.Find(x=>x.id== category.id);
@@ -73,6 +89,14 @@ namespace AACLIENTE.AAAPI.Controllers.CategoriesController;
             return Ok();
         }
         }
+               
+               
+    /// <summary>
+    /// Eliminar categorias seleccionados
+    /// </summary>
+    /// <returns>Todos los categorias</returns>
+    /// <response code="200">Se ha eliminado</response>
+    /// <response code="500">Si hay algún error</response>
      [HttpDelete]
     [Route("{id}")]
     public ActionResult<Category> Delete (int id){

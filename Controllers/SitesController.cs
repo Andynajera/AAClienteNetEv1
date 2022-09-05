@@ -3,11 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using AACLIENTE.AAAPI.Models.Site;
 using AACLIENTE.AAAPI.Models.Category;
 
-using AACLIENTE.AAAPI.Controllers.SitesRepo;
-using AACLIENTE.AAAPI.Controllers.SitesController;
 
-using AACLIENTE.AAAPI.Controllers.CategoriesController;
-using AACLIENTE.AAAPI.Controllers.CategoriesRepo;
 
 namespace AACLIENTE.AAAPI.Controllers.SitesController;
 
@@ -32,7 +28,12 @@ public class SitesController : ControllerBase
     public ActionResult<List<Category>> Get(){
         return Ok(Sites);
     }
-
+/// <summary>
+    /// Mostrar todos los sites
+    /// </summary>
+    /// <returns>Todos los sites</returns>
+    /// <response code="200">Devuelve el listado de sites</response>
+    /// <response code="500">Si hay algún error</response>
     [HttpGet]
     [Route("{id}")]
     public ActionResult<Site> Get (int id){
@@ -42,7 +43,12 @@ public class SitesController : ControllerBase
     
 
 
-
+/// <summary>
+    /// añadir sites
+    /// </summary>
+    /// <returns>Todos los sites</returns>
+    /// <response code="201">Se ha creado correctamente</response>
+    /// <response code="500">Si hay algún error</response>
     [HttpPost]
      public ActionResult<Site> Post([FromBody] Site site){
         var existingCategory = Sites.Find(x=>x.id== site.id);
@@ -56,7 +62,12 @@ public class SitesController : ControllerBase
             return Created(resourceUrl, site);
         }
         }
- 
+ /// <summary>
+    ///Actualizar los sites
+    /// </summary>
+    /// <returns>Todos los sites</returns>
+    /// <response code="201">Devuelve el listado de sites</response>
+    /// <response code="500">Si hay algún error</response>
      [HttpPut]
     public ActionResult Put (Site site){
         var existingSite = Sites.Find(x=>x.id== site.id);
@@ -67,6 +78,14 @@ public class SitesController : ControllerBase
             return Ok();
         }
         }
+
+               
+    /// <summary>
+    /// Eliminar sites seleccionados
+    /// </summary>
+    /// <returns>Todos los sites</returns>
+    /// <response code="200">Se ha eliminado</response>
+    /// <response code="500">Si hay algún error</response>
      [HttpDelete]
     [Route("{id}")]
     public ActionResult<Category> Delete (int id){
